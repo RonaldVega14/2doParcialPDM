@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">GameNews</string>
+    <string name="Logintxt">Login</string>
+    <string name="Username">Username</string>
+    <string name="Password">Password</string>
+    <string name="ForgotPass">Forgot Password?</string>
+    <string name="SignUp">Signup Now</string>
+</resources>
