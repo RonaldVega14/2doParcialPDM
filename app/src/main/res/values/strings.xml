@@ -5,4 +5,7 @@
     <string name="Password">Password</string>
     <string name="ForgotPass">Forgot Password?</string>
     <string name="SignUp">Signup Now</string>
+    <string name="logged">Congratulations, You have successfully logged on GamesNews</string>
+    <string name="Fail2log1">Access Denied: </string>
+    <string name="Fail2log2">Something went wrong...</string>
 </resources>
