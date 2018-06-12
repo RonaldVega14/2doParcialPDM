@@ -8,4 +8,16 @@
     <string name="logged">Congratulations, You have successfully logged on GamesNews</string>
     <string name="Fail2log1">Access Denied: </string>
     <string name="Fail2log2">Something went wrong...</string>
+    <string name="hint">Type what you want to find</string>
+
+    <!--Settings-->
+    <string name="Game1">Game 1</string>
+    <string name="Game2">Game 2</string>
+    <string name="Game3">Game 3</string>
+
+    <string name="News">News</string>
+    <string name="Favorites">Favorites</string>
+    <string name="Settings">Settings</string>
+
+    <string name="homeActivity">Home</string>
 </resources>

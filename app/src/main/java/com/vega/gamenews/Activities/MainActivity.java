@@ -1,6 +1,7 @@
 package com.vega.gamenews.Activities;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -105,9 +106,13 @@ public class MainActivity extends AppCompatActivity {
                     editor.commit();
                     //Inicio de segunda actividad, Home Activity.
                     progress.setVisibility(View.GONE);
-                }else if(!response.body().isResponse()){
-                    progress.setVisibility(View.GONE);
-                    Toast.makeText(MainActivity.this, "ERROR: " + response.body().getToken(), Toast.LENGTH_SHORT).show();
+                    Home();
+                    finish();
+
+//Genera error null pointer...
+//                }else if(!response.isSuccessful() && !response.body().isResponse()){
+//                    progress.setVisibility(View.GONE);
+//                    Toast.makeText(MainActivity.this, "ERROR: " + response.body().getToken(), Toast.LENGTH_SHORT).show();
                 }else{
                     progress.setVisibility(View.GONE);
                     Toast.makeText(MainActivity.this, R.string.Fail2log2, Toast.LENGTH_SHORT).show();
@@ -126,5 +131,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void Home(){
+
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }
