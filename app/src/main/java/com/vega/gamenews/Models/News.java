@@ -7,7 +7,7 @@ public class News {
     private String _id;
     private String title;
     private String coverImage;
-    private Date create_date;
+    private String create_date;
     private String description;
     private String body;
     private String game;
@@ -40,11 +40,11 @@ public class News {
         this.coverImage = coverImage;
     }
 
-    public Date getCreate_date() {
+    public String getCreate_date() {
         return create_date;
     }
 
-    public void setCreate_date(Date create_date) {
+    public void setCreate_date(String create_date) {
         this.create_date = create_date;
     }
 

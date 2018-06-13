@@ -7,8 +7,6 @@ import java.util.List;
 public class User {
     @SerializedName("_id")
     private String id;
-    @SerializedName("created_date")
-    private String date;
 
     private List<News> favoriteNews;
     private String user;
@@ -20,14 +18,6 @@ public class User {
 
     public void setId(String id) {
         this.id = id;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
     }
 
     public List<News> getFavoriteNews() {

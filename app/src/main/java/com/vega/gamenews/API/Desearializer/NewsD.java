@@ -16,8 +16,13 @@ public class NewsD implements JsonDeserializer<News> {
 
         JsonObject jsonObject = json.getAsJsonObject();
         news.set_id(jsonObject.get("_id").getAsString());
+        news.setTitle(jsonObject.get("title").getAsString());
         news.setBody(jsonObject.get("body").getAsString());
+        news.setCoverImage(jsonObject.get("coverImage").getAsString());
+        news.setCreate_date(jsonObject.get("create_date").getAsString());
+        news.setDescription(jsonObject.get("description").getAsString());
+        news.setGame(jsonObject.get("game").getAsString());
 
-        return null;
+        return news;
     }
 }
