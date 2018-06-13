@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class News {
 
-    private int _id;
+    private String _id;
     private String title;
     private String coverImage;
     private Date create_date;
@@ -16,11 +16,11 @@ public class News {
     public News() {
     }
 
-    public int get_id() {
+    public String get_id() {
         return _id;
     }
 
-    public void set_id(int _id) {
+    public void set_id(String _id) {
         this._id = _id;
     }
 
