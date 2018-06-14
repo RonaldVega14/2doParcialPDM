@@ -1,66 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="250dp"
     android:id="@+id/cardView"
-    android:elevation="7dp"
-    app:cardCornerRadius="7dp">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    card_view:cardUseCompatPadding="true"
+    card_view:cardCornerRadius="2dp">
 
-    <android.support.constraint.ConstraintLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/image"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="175dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/hola"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:src="@drawable/hola"/>
 
         <LinearLayout
+            android:id="@+id/texts"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_marginTop="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/image"
+            android:orientation="vertical"
+            android:weightSum="20">
 
             <TextView
-                android:textSize="18dp"
                 android:id="@+id/title"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Titulo de Noticia"
-                android:layout_marginTop="5dp"
-                android:ellipsize="end"
-                android:lines="1"
-                android:layout_marginLeft="5dp"
-                />
-            <android.support.v4.widget.NestedScrollView
-                android:layout_width="match_parent"
+                android:text="Title here..."
+                android:textSize="24sp"
+                android:textColor="#000"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/description"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp">
-                <TextView
-                    android:textSize="14dp"
-                    android:id="@+id/description"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras in tortor nec lectus ullamcorper ultricies. Nulla facilisi. Mauris dignissim vel tellus sed fringilla."
-                    />
-            </android.support.v4.widget.NestedScrollView>
+                android:text="description here..."
+                android:textSize="12sp"/>
 
         </LinearLayout>
 
-    </android.support.constraint.ConstraintLayout>
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/texts">
+
+            <ImageButton
+                android:id="@+id/fav"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:background="@null"
+                android:src="@drawable/ic_no_fav_24dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?android:attr/selectableItemBackground"/>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
 
 </android.support.v7.widget.CardView>

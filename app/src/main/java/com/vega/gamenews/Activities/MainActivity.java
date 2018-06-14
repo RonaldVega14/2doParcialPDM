@@ -110,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
                     startMain(MainActivity.this);
                 }else if(!response.isSuccessful() && response.code()!=200){
                     progress.setVisibility(View.GONE);
-                    Toast.makeText(MainActivity.this, "ERROR: " + response.code(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this, "ERROR: " , Toast.LENGTH_SHORT).show();
                 }else{
                     progress.setVisibility(View.GONE);
                     Toast.makeText(MainActivity.this, R.string.Fail2log2, Toast.LENGTH_SHORT).show();
@@ -132,7 +132,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private static void startMain(Activity activity) {
-        activity.startActivity(new Intent(activity, MainActivity.class));
+        activity.startActivity(new Intent(activity, HomeActivity.class));
         activity.finish();
     }
 }

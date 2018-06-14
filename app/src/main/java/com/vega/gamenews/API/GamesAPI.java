@@ -1,10 +1,15 @@
 package com.vega.gamenews.API;
 
 import com.vega.gamenews.Models.Login;
+import com.vega.gamenews.Models.News;
+
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public interface GamesAPI {
@@ -17,5 +22,9 @@ public interface GamesAPI {
             @Field("user") String Username,
             @Field("password") String password
     );
+
+    @GET("/news")
+    Call<List<News>> getNews(@Header("Authorization") String auth);
+
 
 }
