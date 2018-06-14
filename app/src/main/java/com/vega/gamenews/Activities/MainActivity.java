@@ -108,10 +108,9 @@ public class MainActivity extends AppCompatActivity {
                     //Inicio de segunda actividad, Home Activity.
                     progress.setVisibility(View.GONE);
                     startMain(MainActivity.this);
-//Genera error null pointer...
-//                }else if(!response.isSuccessful() && !response.body().isResponse()){
-//                    progress.setVisibility(View.GONE);
-//                    Toast.makeText(MainActivity.this, "ERROR: " + response.body().getToken(), Toast.LENGTH_SHORT).show();
+                }else if(!response.isSuccessful() && response.code()!=200){
+                    progress.setVisibility(View.GONE);
+                    Toast.makeText(MainActivity.this, "ERROR: " + response.code(), Toast.LENGTH_SHORT).show();
                 }else{
                     progress.setVisibility(View.GONE);
                     Toast.makeText(MainActivity.this, R.string.Fail2log2, Toast.LENGTH_SHORT).show();
