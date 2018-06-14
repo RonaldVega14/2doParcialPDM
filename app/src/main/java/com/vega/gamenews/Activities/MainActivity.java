@@ -1,5 +1,6 @@
 package com.vega.gamenews.Activities;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -106,9 +107,7 @@ public class MainActivity extends AppCompatActivity {
                     editor.commit();
                     //Inicio de segunda actividad, Home Activity.
                     progress.setVisibility(View.GONE);
-                    Home();
-                    finish();
-
+                    startMain(MainActivity.this);
 //Genera error null pointer...
 //                }else if(!response.isSuccessful() && !response.body().isResponse()){
 //                    progress.setVisibility(View.GONE);
@@ -133,8 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void Home(){
-
-        startActivity(new Intent(this, HomeActivity.class));
+    private static void startMain(Activity activity) {
+        activity.startActivity(new Intent(activity, MainActivity.class));
+        activity.finish();
     }
 }

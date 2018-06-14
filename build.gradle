@@ -20,8 +20,16 @@ allprojects {
         google()
         jcenter()
     }
+    dependencies{
+        'com.github.bumptech.glide:compiler:4.7.1'
+    }
 }
 
 task clean(type: Delete) {
     delete rootProject.buildDir
+}
+
+ext {
+    roomVersion = '1.0.0'
+    archLifecycleVersion = '1.1.0'
 }
