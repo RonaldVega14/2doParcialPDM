@@ -36,6 +36,7 @@ public class NewsRepository {
 
         SharedPreferences preferences = app.getSharedPreferences("log", Context.MODE_PRIVATE);
         pass = preferences.getString("token", "");
+        context = app.getApplicationContext();
 
         getNews();
 
@@ -84,6 +85,7 @@ public class NewsRepository {
 
         Retrofit retrofit = builder.build();
         GamesAPI gamesAPI = retrofit.create(GamesAPI.class);
+//          System.out.println("*****************************************************************************************" + pass + "*****************************************************************************************");
 
         Call<List<News>> noticias = gamesAPI.getNews("Bearer " + pass);
         noticias.enqueue(new Callback<List<News>>() {
@@ -91,6 +93,7 @@ public class NewsRepository {
             public void onResponse(Call<List<News>> call, Response<List<News>> response) {
 
                 if(response.isSuccessful()) {
+                    System.out.println("***********************************************************************************HOLAAAAAAAA: "+response.code()+"***********************************************************************************");
                     for (News x : response.body()) {
 
                         insert(new NewsEntity(x.get_id(),
@@ -103,10 +106,11 @@ public class NewsRepository {
 
             @Override
             public void onFailure(Call<List<News>> call, Throwable t) {
-//                if(t instanceof SocketTimeoutException)
-//                    Toast.makeText(context, "Timed Out", Toast.LENGTH_SHORT).show();
-//                else if(t instanceof Exception)
-//                    Toast.makeText(context, "Something went wrong...", Toast.LENGTH_LONG).show();
+
+                if(t instanceof SocketTimeoutException)
+                    Toast.makeText(context, "Timed Out", Toast.LENGTH_SHORT).show();
+                else if(t instanceof Exception)
+                    Toast.makeText(context, "Something went wrong...", Toast.LENGTH_LONG).show();
 
             }
         });

@@ -23,6 +23,7 @@ import com.google.gson.GsonBuilder;
 import com.vega.gamenews.API.Desearializer.NewsD;
 import com.vega.gamenews.API.GamesAPI;
 import com.vega.gamenews.Adapters.NewsAdapter;
+import com.vega.gamenews.Database.DBInstance;
 import com.vega.gamenews.Database.Entities.NewsEntity;
 import com.vega.gamenews.Models.News;
 import com.vega.gamenews.R;
@@ -46,6 +47,7 @@ public class NewsFragment extends Fragment {
     private String token, cat;
     private NewsVModel newsVModel;
     private SearchView searchView;
+    private DBInstance db;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +62,7 @@ public class NewsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.news_fragment, container, false);
 
+        db = DBInstance.getInstance(getContext());
         recyclerView = v.findViewById(R.id.recyclerView_news);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2, GridLayoutManager.VERTICAL, false);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(){
@@ -75,13 +78,13 @@ public class NewsFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<NewsEntity> newsEntities) {
 
-                List<NewsEntity> news = new ArrayList<>();
-                for(NewsEntity x:newsEntities){
-
-                    news.add(x);
-
-                }
-                newsAdapter.setNews(news);
+//                List<NewsEntity> news = new ArrayList<>();
+//                for(NewsEntity x:newsEntities){
+//
+//                    news.add(x);
+//
+//                }
+                newsAdapter.setNews(newsEntities);
 
             }
         });

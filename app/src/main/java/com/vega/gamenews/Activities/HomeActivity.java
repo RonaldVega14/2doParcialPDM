@@ -34,6 +34,7 @@ public class HomeActivity extends AppCompatActivity
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
+    Fragment fragment = new NewsFragment();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +43,10 @@ public class HomeActivity extends AppCompatActivity
         Logged();
         prepareStuff();
         db = DBInstance.createDB(this);
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment).commit();
+
         categoryVModel = ViewModelProviders.of(this).get(CategoryVModel.class);
         categoryVModel.getAllCategories().observe(this, new Observer<List<CategoryEntity>>() {
             @Override
@@ -57,10 +62,7 @@ public class HomeActivity extends AppCompatActivity
                 }
             }
         });
-        Fragment fragment = new NewsFragment();
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment).commit();
     }
 
     @Override

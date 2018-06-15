@@ -63,7 +63,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
 
-        setItems(Objects.requireNonNull(holder), position);
+        setItems(holder, position);
 
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,16 +95,4 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         }
     }
 
-    protected class ViewHolder extends RecyclerView.ViewHolder{
-
-        private ImageView imageView;
-        private TextView title;
-        private TextView description;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-            imageView = itemView.findViewById(R.id.imageView);
-            title = itemView.findViewById(R.id.showTitle);
-        }
-    }
 }
