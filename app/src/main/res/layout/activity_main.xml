@@ -11,17 +11,23 @@
     <RelativeLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="40dp"
         android:layout_marginLeft="40dp"
-        android:layout_marginRight="40dp">
+        android:layout_marginRight="40dp"
+>
 
         <ImageView
             android:id="@+id/logoApp"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:adjustViewBounds="true"
+            android:animateLayoutChanges="true"
+            android:layout_centerHorizontal="true"
             android:scaleType="fitCenter"
-            android:src="@drawable/gamenews"/>
+            android:src="@drawable/logo"/>
 
         <RelativeLayout
             android:id="@+id/layout1"
@@ -30,15 +36,16 @@
             android:layout_below="@+id/logoApp"
             android:visibility="gone">
 
+
             <TextView
                 android:id="@+id/tv_login"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:fontFamily="sans-serif-medium"
                 android:text="@string/Logintxt"
                 android:textColor="@color/white"
-                android:textSize="30sp" />
+                android:textSize="26sp"/>
 
             <LinearLayout
                 android:id="@+id/linlay1"

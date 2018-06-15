@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
@@ -40,8 +41,9 @@ public class MainActivity extends AppCompatActivity {
     Runnable runnable = new Runnable() {
         @Override
         public void run() {
+
             layout1.setVisibility(View.VISIBLE);
-            layout2.setVisibility(View.VISIBLE);
+            layout2.setVisibility(View.VISIBLE); ;
 
         }
     };

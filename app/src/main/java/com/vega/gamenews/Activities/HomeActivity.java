@@ -1,16 +1,13 @@
 package com.vega.gamenews.Activities;
 
 import android.arch.lifecycle.Observer;
-import android.arch.lifecycle.ViewModelProvider;
 import android.arch.lifecycle.ViewModelProviders;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.view.View;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -22,7 +19,7 @@ import android.widget.Toast;
 
 import com.vega.gamenews.Database.DBInstance;
 import com.vega.gamenews.Database.Entities.CategoryEntity;
-import com.vega.gamenews.Methods;
+import com.vega.gamenews.Fragments.NewsFragment;
 import com.vega.gamenews.R;
 import com.vega.gamenews.ViewModels.CategoryVModel;
 
@@ -37,7 +34,6 @@ public class HomeActivity extends AppCompatActivity
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
-    private Methods aux;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,10 +47,20 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onChanged(@Nullable List<CategoryEntity> categoryEntities) {
                 addCategories(categoryEntities);
+
+                for(int i = 0; i<navigationView.getMenu().findItem(R.id.games).getSubMenu().size();i++){
+
+                    String name = "";
+                    name = navigationView.getMenu().findItem(R.id.games).getSubMenu().getItem(i).getTitle().toString();
+                    name = capitalizeFirstLetter(name);
+                    navigationView.getMenu().findItem(R.id.games).getSubMenu().getItem(i).setTitle(name);
+                }
             }
         });
+        Fragment fragment = new NewsFragment();
 
-
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment).commit();
     }
 
     @Override
@@ -94,9 +100,10 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        Fragment fragment = null;
 
         if (id == R.id.nav_news) {
-            // Handle the camera action
+            fragment = new NewsFragment();
         } else if (id == R.id.nav_fav) {
 
         } else if (id == R.id.nav_settings) {
@@ -104,6 +111,9 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_logout) {
 
         }
+
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.container, fragment).commit();
 
         drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -157,5 +167,12 @@ public class HomeActivity extends AppCompatActivity
             return preferences.getString("token", "");
         }
         return "";
+    }
+
+    public String capitalizeFirstLetter(String original) {
+        if (original == null || original.length() == 0) {
+            return original;
+        }
+        return original.substring(0, 1).toUpperCase() + original.substring(1);
     }
 }

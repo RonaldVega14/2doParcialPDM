@@ -12,15 +12,17 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.vega.gamenews.Database.Entities.NewsEntity;
 import com.vega.gamenews.Models.News;
 import com.vega.gamenews.R;
 
 import java.util.List;
+import java.util.Objects;
 
 public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder>{
 
     private Context context;
-    private List<News> news;
+    private List<NewsEntity> news;
     private boolean favo;
 
 
@@ -40,7 +42,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         }
     }
 
-    public void setNews(List<News> news){
+    public void setNews(List<NewsEntity> news){
         this.news = news;
         notifyDataSetChanged();
     }
@@ -61,16 +63,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     @Override
     public void onBindViewHolder(@NonNull NewsViewHolder holder, int position) {
 
+        setItems(Objects.requireNonNull(holder), position);
+
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
             }
         });
-        holder.title.setText(news.get(position).getTitle());
-        holder.description.setText(news.get(position).getTitle());
-        Picasso.with(context).load(news.get(position).getCoverImage()).error(R.drawable.hola).into(holder.image);
-
 
     }
 
@@ -81,5 +81,30 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         }
 
         return news.size();
+    }
+
+    private void setItems(NewsViewHolder holder, int position){
+
+        holder.title.setText(news.get(position).getTitle());
+        holder.description.setText(news.get(position).getTitle());
+
+        if(!(news.get(position).getCoverImage() == null)){
+            Picasso.with(context).load(news.get(position).getCoverImage()).error(R.drawable.hola).into(holder.image);
+        }else{
+            Picasso.with(context).load(R.drawable.hola).error(R.drawable.hola).into(holder.image);
+        }
+    }
+
+    protected class ViewHolder extends RecyclerView.ViewHolder{
+
+        private ImageView imageView;
+        private TextView title;
+        private TextView description;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+            imageView = itemView.findViewById(R.id.imageView);
+            title = itemView.findViewById(R.id.showTitle);
+        }
     }
 }

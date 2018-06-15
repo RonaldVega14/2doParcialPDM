@@ -1,17 +1,21 @@
 package com.vega.gamenews.Fragments;
 
 import android.app.Activity;
-import android.app.Fragment;
+import android.arch.lifecycle.Observer;
+import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -19,10 +23,13 @@ import com.google.gson.GsonBuilder;
 import com.vega.gamenews.API.Desearializer.NewsD;
 import com.vega.gamenews.API.GamesAPI;
 import com.vega.gamenews.Adapters.NewsAdapter;
+import com.vega.gamenews.Database.Entities.NewsEntity;
 import com.vega.gamenews.Models.News;
 import com.vega.gamenews.R;
+import com.vega.gamenews.ViewModels.NewsVModel;
 
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -35,7 +42,10 @@ public class NewsFragment extends Fragment {
 
     private RecyclerView recyclerView;
     private NewsAdapter newsAdapter;
-    private String token;
+    private GridLayoutManager gridLayoutManager;
+    private String token, cat;
+    private NewsVModel newsVModel;
+    private SearchView searchView;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +70,22 @@ public class NewsFragment extends Fragment {
         });
 
         newsAdapter = new NewsAdapter(getActivity().getApplicationContext());
+        newsVModel = ViewModelProviders.of(this).get(NewsVModel.class);
+        newsVModel.getAllNews().observe(this, new Observer<List<NewsEntity>>() {
+            @Override
+            public void onChanged(@Nullable List<NewsEntity> newsEntities) {
+
+                List<NewsEntity> news = new ArrayList<>();
+                for(NewsEntity x:newsEntities){
+
+                    news.add(x);
+
+                }
+                newsAdapter.setNews(news);
+
+            }
+        });
+
         recyclerView.setLayoutManager(gridLayoutManager);
         recyclerView.setAdapter(newsAdapter);
 
@@ -69,32 +95,4 @@ public class NewsFragment extends Fragment {
 
     }
 
-    public static void getNews(String pass, final NewsAdapter newsAdap, final Activity activity){
-
-        Gson gson = new GsonBuilder().registerTypeAdapter(News.class, new NewsD()).create();
-        Retrofit.Builder builder = new Retrofit.Builder().baseUrl("http://gamenewsuca.herokuapp.com/")
-                .addConverterFactory(GsonConverterFactory.create(gson));
-
-        Retrofit retrofit = builder.build();
-
-        GamesAPI gamesAPI = retrofit.create(GamesAPI.class);
-
-        Call<List<News>> noticias = gamesAPI.getNews("Bearer " + pass);
-        noticias.enqueue(new Callback<List<News>>() {
-            @Override
-            public void onResponse(Call<List<News>> call, Response<List<News>> response) {
-                newsAdap.setNews(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<List<News>> call, Throwable t) {
-                if(t instanceof SocketTimeoutException)
-                    Toast.makeText(activity, "Timed Out", Toast.LENGTH_SHORT).show();
-                else if(t instanceof Exception)
-                    Toast.makeText(activity, "Something went wrong...", Toast.LENGTH_LONG).show();
-
-            }
-        });
-
-    }
 }
