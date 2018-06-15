@@ -8,11 +8,11 @@
         android:id="@+id/group1"
         android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_news"
             android:icon="@drawable/ic_public_black_24dp"
             android:title="@string/News" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_fav"
             android:icon="@drawable/ic_favorite_black_24dp"
             android:title="@string/Favorites" />
 
@@ -32,12 +32,12 @@
         android:checkableBehavior="single">
 
         <item
-            android:id="@+id/settings"
+            android:id="@+id/nav_settings"
             android:title="@string/Settings"
             android:icon="@drawable/ic_settings_black_24dp"
             />
         <item
-            android:id="@+id/Logout"
+            android:id="@+id/nav_logout"
             android:title="@string/Logout"
             android:icon="@drawable/ic_account_circle_black_24dp"
             />

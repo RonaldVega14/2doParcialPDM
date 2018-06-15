@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -88,23 +89,25 @@ public class MainActivity extends AppCompatActivity {
     public void login(String user, String pass){
 
         progress.setVisibility(View.VISIBLE);
-        Gson gson = new GsonBuilder().registerTypeAdapter(Login.class, new TokenD())
+        Gson gson = new GsonBuilder().registerTypeAdapter(String.class, new TokenD())
                 .create();
         Retrofit.Builder builder = new Retrofit.Builder().baseUrl(END_POINT)
                 .addConverterFactory(GsonConverterFactory.create(gson));
         Retrofit retrofit = builder.build();
         GamesAPI gamesAPI = retrofit.create(GamesAPI.class);
-        Call<Login> call = gamesAPI.login(user, pass);
+        Call<String> call = gamesAPI.login(user, pass);
 
-        call.enqueue(new Callback<Login>() {
+        call.enqueue(new Callback<String>() {
             @Override
-            public void onResponse(Call<Login> call, Response<Login> response) {
-                if(response.isSuccessful() && response.body().isResponse()) {
+            public void onResponse(Call<String> call, Response<String> response) {
+                if(response.isSuccessful()) {
                     Toast.makeText(MainActivity.this, R.string.logged, Toast.LENGTH_SHORT).show();
-                    SharedPreferences preferences = MainActivity.this.getPreferences(Context.MODE_PRIVATE);
+                    SharedPreferences preferences = MainActivity.this.getSharedPreferences("log", Context.MODE_PRIVATE);
                     SharedPreferences.Editor editor = preferences.edit();
-                    editor.putString("token", response.body().getToken());
-                    editor.commit();
+                    editor.putString("token", response.body());
+                    //System.out.println("-------------------------------------------------------"+response.body()+" TOKEN-------------------------------------------------");
+                    editor.apply();
+                    //System.out.println("-------------------------------------------------------"+preferences.contains("token") +" holaaaaaa -------------------------------------------------");
                     //Inicio de segunda actividad, Home Activity.
                     progress.setVisibility(View.GONE);
                     startMain(MainActivity.this);
@@ -118,7 +121,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<Login> call, Throwable t) {
+            public void onFailure(Call<String> call, Throwable t) {
                 if(t instanceof SocketTimeoutException) {
                     progress.setVisibility(View.GONE);
                     Toast.makeText(MainActivity.this, "Timed Out", Toast.LENGTH_SHORT).show();

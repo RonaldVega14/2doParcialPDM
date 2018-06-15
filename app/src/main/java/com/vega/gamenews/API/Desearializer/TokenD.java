@@ -9,19 +9,18 @@ import com.vega.gamenews.Models.Login;
 
 import java.lang.reflect.Type;
 
-public class TokenD implements JsonDeserializer<Login>{
+public class TokenD implements JsonDeserializer<String>{
     @Override
-    public Login deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
+    public String deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
-        Login login = new Login();
+        String login = "";
         if(json.getAsJsonObject()!=null) {
             JsonObject token = json.getAsJsonObject();
             if(token.get("token")!=null){
-                login.setToken(token.get("token").getAsString());
-                login.setResponse(true);
+                login = token.get("token").getAsString();
             }else{
-                login.setToken(token.get("message").getAsString());
-                login.setResponse(false);
+                login = token.get("message").getAsString();
+
             }
         }
 

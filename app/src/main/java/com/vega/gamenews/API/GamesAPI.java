@@ -18,7 +18,7 @@ public interface GamesAPI {
 
     @FormUrlEncoded
     @POST("/login")
-    Call<Login> login(
+    Call<String> login(
             @Field("user") String Username,
             @Field("password") String password
     );
