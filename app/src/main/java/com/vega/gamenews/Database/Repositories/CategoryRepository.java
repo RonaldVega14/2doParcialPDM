@@ -17,6 +17,7 @@ import com.vega.gamenews.Activities.MainActivity;
 import com.vega.gamenews.Database.DBInstance;
 import com.vega.gamenews.Database.Daos.CategoryDao;
 import com.vega.gamenews.Database.Entities.CategoryEntity;
+import com.vega.gamenews.R;
 import com.vega.gamenews.ViewModels.CategoryVModel;
 
 import java.net.SocketTimeoutException;
@@ -33,12 +34,13 @@ public class CategoryRepository {
 
     private CategoryDao categoryDao;
     String pass;
+    Context context;
 
     public CategoryRepository(Application app){
         DBInstance db = DBInstance.getInstance(app);
         this.categoryDao = db.categoryDao();
 
-        SharedPreferences preferences = app.getSharedPreferences("token", Context.MODE_PRIVATE);
+        SharedPreferences preferences = app.getSharedPreferences("log", Context.MODE_PRIVATE);
         pass = preferences.getString("token", "");
 
         getCategories();
@@ -91,10 +93,19 @@ public class CategoryRepository {
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
 
+                if (t instanceof SocketTimeoutException){
+                    Toast.makeText(context, R.string.Fail2log1, Toast.LENGTH_SHORT).show();
+                }else if (t instanceof Exception){
+                    Toast.makeText(context, R.string.Fail2log2, Toast.LENGTH_SHORT).show();
+                    t.printStackTrace();
+                }
+
             }
         });
 
     }
+
+
 
 
 

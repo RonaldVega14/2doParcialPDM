@@ -18,9 +18,9 @@ public class CategoryD implements JsonDeserializer<List<String>> {
     public List<String> deserialize(JsonElement json, Type typeOfT, JsonDeserializationContext context) throws JsonParseException {
 
         List<String> cats = new ArrayList<>();
-        JsonArray categoies = json.getAsJsonArray();
+        JsonArray categories = json.getAsJsonArray();
 
-        for(JsonElement cat:categoies){
+        for(JsonElement cat:categories){
             cats.add(cat.getAsString());
         }
 

@@ -22,6 +22,7 @@ import android.widget.Toast;
 
 import com.vega.gamenews.Database.DBInstance;
 import com.vega.gamenews.Database.Entities.CategoryEntity;
+import com.vega.gamenews.Methods;
 import com.vega.gamenews.R;
 import com.vega.gamenews.ViewModels.CategoryVModel;
 
@@ -36,6 +37,7 @@ public class HomeActivity extends AppCompatActivity
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
+    private Methods aux;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,5 +149,13 @@ public class HomeActivity extends AppCompatActivity
             navigationView.getMenu().findItem(R.id.games).getSubMenu()
                     .add(category.getName());
         }
+    }
+
+    private String DameToken(){
+        SharedPreferences preferences = this.getSharedPreferences("log", MODE_PRIVATE);
+        if(preferences.contains("token")){
+            return preferences.getString("token", "");
+        }
+        return "";
     }
 }

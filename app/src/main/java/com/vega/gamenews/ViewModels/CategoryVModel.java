@@ -23,7 +23,7 @@ public class CategoryVModel extends AndroidViewModel {
         return categoryRepository.getAllCategories();
     }
 
-    public void insertCategory(CategoryEntity categoryEntity){
+    public void insert(CategoryEntity categoryEntity){
 
         categoryRepository.insert(categoryEntity);
 
