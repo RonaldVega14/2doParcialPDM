@@ -14,7 +14,7 @@ import java.util.List;
 public interface CategoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insetCategory(CategoryEntity categoryEntity);
+    void insertCategory(CategoryEntity categoryEntity);
 
     @Query("SELECT*FROM CategoryEntity")
     LiveData<List<CategoryEntity>> getAllCategories();

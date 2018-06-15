@@ -11,13 +11,19 @@
     <string name="hint">Type what you want to find</string>
 
     <!--Settings-->
-    <string name="Game1">Game 1</string>
-    <string name="Game2">Game 2</string>
-    <string name="Game3">Game 3</string>
+    <string name="Game1">Games</string>
 
     <string name="News">News</string>
     <string name="Favorites">Favorites</string>
     <string name="Settings">Settings</string>
+    <string name="Logout">Log out</string>
 
     <string name="homeActivity">Home</string>
+    <string name="title_activity_home">HomeActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
 </resources>

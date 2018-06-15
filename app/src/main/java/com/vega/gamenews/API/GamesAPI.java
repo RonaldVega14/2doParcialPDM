@@ -26,5 +26,8 @@ public interface GamesAPI {
     @GET("/news")
     Call<List<News>> getNews(@Header("Authorization") String auth);
 
+    @GET("/news/type/list")
+    Call<List<String>> getCategories(@Header("Authorization") String auth);
+
 
 }

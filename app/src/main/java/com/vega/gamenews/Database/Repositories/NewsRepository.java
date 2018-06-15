@@ -19,6 +19,10 @@ public class NewsRepository {
         newsDao = db.newsDao();
     }
 
+    public LiveData<List<NewsEntity>> getAllNews(){
+        return newsDao.getAllNews();
+    }
+
     public LiveData<List<NewsEntity>> getNewsbyQuery(String query){
         return newsDao.getNewsByQuery(query);
     }
