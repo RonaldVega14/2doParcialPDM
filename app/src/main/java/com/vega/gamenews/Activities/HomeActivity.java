@@ -125,6 +125,7 @@ public class HomeActivity extends AppCompatActivity
                 break;
             default:
                 fragment = GamesFragment.newInstance(item.getTitle().toString().toLowerCase());
+                getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
                 getSupportActionBar().setTitle(item.getTitle());
                 break;
         }
