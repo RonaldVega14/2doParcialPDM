@@ -36,6 +36,7 @@ public class GamesFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         cat = getArguments().getString("category");
+        System.out.println("------------------------------------------------------------------------" + cat + "-------------------------------------------------------------------------");
     }
 
     @Nullable
@@ -47,12 +48,14 @@ public class GamesFragment extends Fragment {
 
         adapter = new GamesVPAdapter(getChildFragmentManager());
 
-        adapter.addFragment(new NewsFragment(), "News");
-        adapter.addFragment(new NewsFragment(), "News2");
+        insertFragments();
+        return v;
+    }
 
+    public void insertFragments(){
+        adapter.addFragment(NewsFragment.newInstance(2, cat), "News");
+        adapter.addFragment(new NewsFragment(), "News2");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
-
-        return v;
     }
 }

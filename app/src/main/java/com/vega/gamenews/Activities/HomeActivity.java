@@ -120,7 +120,8 @@ public class HomeActivity extends AppCompatActivity
                 break;
 
             case R.id.nav_news:
-                fragment = new NewsFragment();
+                fragment = NewsFragment.newInstance(0, "");
+                getSupportActionBar().setTitle(R.string.app_name);
                 break;
             default:
                 fragment = GamesFragment.newInstance(item.getTitle().toString().toLowerCase());

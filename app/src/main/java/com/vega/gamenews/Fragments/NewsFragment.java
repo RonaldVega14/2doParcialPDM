@@ -41,6 +41,10 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class NewsFragment extends Fragment {
 
+    public static final int NEWS = 1;
+    public static final int GAMENEWS = 2;
+    public static final int FAVNEWS = 3;
+
     private RecyclerView recyclerView;
     private NewsAdapter newsAdapter;
     private GridLayoutManager gridLayoutManager;
@@ -48,6 +52,7 @@ public class NewsFragment extends Fragment {
     private NewsVModel newsVModel;
     private SearchView searchView;
     private DBInstance db;
+    private int Type;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -55,6 +60,9 @@ public class NewsFragment extends Fragment {
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("logged", Context.MODE_PRIVATE);
         token = sharedPreferences.getString("token", "");
         setHasOptionsMenu(true);
+
+        Type = getArguments() != null ? getArguments().getInt("fragmentType") : 1;
+        cat = getArguments() != null ? getArguments().getString("category") : "";
     }
 
     @Nullable
@@ -64,6 +72,7 @@ public class NewsFragment extends Fragment {
 
         db = DBInstance.getInstance(getContext());
         recyclerView = v.findViewById(R.id.recyclerView_news);
+
         GridLayoutManager gridLayoutManager = new GridLayoutManager(getActivity().getApplicationContext(), 2, GridLayoutManager.VERTICAL, false);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup(){
             @Override
@@ -78,7 +87,7 @@ public class NewsFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<NewsEntity> newsEntities) {
 
-                newsAdapter.setNews(newsEntities);
+                newsAdapter.setNews(selectCat(newsEntities));
 
             }
         });
@@ -88,7 +97,40 @@ public class NewsFragment extends Fragment {
 
         return v;
 
+    }
 
+    public static NewsFragment newInstance(int type,String Category){
+
+        Bundle args = new Bundle();
+        args.putInt("fragmentType", type);
+        args.putString("category", Category);
+
+        NewsFragment fragment= new NewsFragment();
+        fragment.setArguments(args);
+
+        return fragment;
+
+    }
+
+    public List<NewsEntity> selectCat(List<NewsEntity> entities){
+
+        if(Type == FAVNEWS){
+            List<NewsEntity> faventities= new ArrayList<>();
+            return faventities;
+
+        }
+        if (Type == GAMENEWS){
+            List<NewsEntity> game = new ArrayList<>();
+            for(NewsEntity news : entities){
+                if (news.getGame().equals(cat)){
+                    game.add(news);
+                }
+
+            }
+            return game;
+        }else {
+            return entities;
+        }
 
     }
 
