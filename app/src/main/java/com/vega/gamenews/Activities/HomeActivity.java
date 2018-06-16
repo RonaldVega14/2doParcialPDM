@@ -48,7 +48,8 @@ public class HomeActivity extends AppCompatActivity
                 .replace(R.id.container, fragment).commit();
 
         categoryVModel = ViewModelProviders.of(this).get(CategoryVModel.class);
-        categoryVModel.getAllCategories().observe(this, new Observer<List<CategoryEntity>>() {
+        categoryVModel.getAllCategories()
+                .observe(this, new Observer<List<CategoryEntity>>() {
             @Override
             public void onChanged(@Nullable List<CategoryEntity> categoryEntities) {
                 addCategories(categoryEntities);
@@ -62,6 +63,8 @@ public class HomeActivity extends AppCompatActivity
                 }
             }
         });
+
+
 
     }
 

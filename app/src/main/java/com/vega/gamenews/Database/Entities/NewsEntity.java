@@ -25,7 +25,10 @@ public class NewsEntity {
 
     private int favo;
 
-    public NewsEntity(@NonNull String id, String createdate, String title, String coverImage, String description, String body, String game, String date, int favo) {
+    public NewsEntity(@NonNull String id, String createdate,
+                      String title, String coverImage,
+                      String description, String body,
+                      String game) {
         this.id = id;
         this.createdate = createdate;
         this.title = title;
@@ -33,8 +36,6 @@ public class NewsEntity {
         this.description = description;
         this.body = body;
         this.game = game;
-        this.date = date;
-        this.favo = favo;
     }
 
     @NonNull

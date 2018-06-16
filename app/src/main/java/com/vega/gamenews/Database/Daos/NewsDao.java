@@ -16,12 +16,12 @@ public interface NewsDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertNews(NewsEntity news);
 
-    @Query("SELECT*FROM NewsEntity")
+    @Query("SELECT * FROM NewsEntity")
     LiveData<List<NewsEntity>> getAllNews();
 
-    @Query("SELECT*FROM NewsEntity WHERE title like :query")
+    @Query("SELECT * FROM NewsEntity WHERE title like  :query")
     LiveData<List<NewsEntity>> getNewsByQuery(String query);
 
-    @Query("SELECT*FROM NewsEntity WHERE game =:game")
+    @Query("SELECT * FROM NewsEntity WHERE game =:game")
     LiveData<List<NewsEntity>> getNewsByGame(String game);
 }

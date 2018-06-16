@@ -11,7 +11,7 @@ public class News {
     private String description;
     private String body;
     private String game;
-    private String date;
+    private Date date;
 
     public News() {
     }
@@ -72,11 +72,11 @@ public class News {
         this.game = game;
     }
 
-    public String getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(String date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
