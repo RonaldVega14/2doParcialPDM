@@ -107,15 +107,10 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+
         if (id == R.id.nav_news) {
 
-            if(idaux != id) {
-                System.out.println();
-                idaux = id;
-                fragment = new NewsFragment();
-            }else{
-                //
-            }
+            fragment = new NewsFragment();
 
         } else if (id == R.id.nav_fav) {
 
@@ -125,8 +120,14 @@ public class HomeActivity extends AppCompatActivity
 
         }
 
-        getSupportFragmentManager().beginTransaction()
-                .replace(R.id.container, fragment).commit();
+        if(fragment != null && idaux != id){
+            idaux = id;
+            getSupportFragmentManager().beginTransaction()
+                    .replace(R.id.container, fragment).commit();
+
+        }
+
+
 
         drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
@@ -136,15 +137,6 @@ public class HomeActivity extends AppCompatActivity
     public void prepareStuff(){
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
-//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-//        fab.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-//                        .setAction("Action", null).show();
-//            }
-//        });
 
         drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(

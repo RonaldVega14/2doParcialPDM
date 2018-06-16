@@ -78,12 +78,6 @@ public class NewsFragment extends Fragment {
             @Override
             public void onChanged(@Nullable List<NewsEntity> newsEntities) {
 
-//                List<NewsEntity> news = new ArrayList<>();
-//                for(NewsEntity x:newsEntities){
-//
-//                    news.add(x);
-//
-//                }
                 newsAdapter.setNews(newsEntities);
 
             }
