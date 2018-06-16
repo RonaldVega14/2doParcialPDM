@@ -19,6 +19,7 @@ import android.widget.Toast;
 
 import com.vega.gamenews.Database.DBInstance;
 import com.vega.gamenews.Database.Entities.CategoryEntity;
+import com.vega.gamenews.Fragments.GamesFragment;
 import com.vega.gamenews.Fragments.NewsFragment;
 import com.vega.gamenews.R;
 import com.vega.gamenews.ViewModels.CategoryVModel;
@@ -107,17 +108,24 @@ public class HomeActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
+        switch (id){
 
-        if (id == R.id.nav_news) {
+            case R.id.nav_logout:
+                break;
 
-            fragment = new NewsFragment();
+            case R.id.nav_settings:
+                break;
 
-        } else if (id == R.id.nav_fav) {
+            case R.id.nav_fav:
+                break;
 
-        } else if (id == R.id.nav_settings) {
-
-        } else if (id == R.id.nav_logout) {
-
+            case R.id.nav_news:
+                fragment = new NewsFragment();
+                break;
+            default:
+                fragment = GamesFragment.newInstance(item.getTitle().toString().toLowerCase());
+                getSupportActionBar().setTitle(item.getTitle());
+                break;
         }
 
         if(fragment != null && idaux != id){
@@ -128,8 +136,6 @@ public class HomeActivity extends AppCompatActivity
         }
 
 
-
-        drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

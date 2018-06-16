@@ -86,7 +86,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
     private void setItems(NewsViewHolder holder, int position){
 
         holder.title.setText(news.get(position).getTitle());
-        holder.description.setText(news.get(position).getTitle());
+        holder.description.setText(news.get(position).getDescription());
 
         if(!(news.get(position).getCoverImage() == null)){
             Picasso.with(context).load(news.get(position).getCoverImage()).error(R.drawable.hola).into(holder.image);
