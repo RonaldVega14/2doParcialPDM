@@ -34,7 +34,8 @@ public class HomeActivity extends AppCompatActivity
     private Toolbar toolbar;
     private DrawerLayout drawer;
     private NavigationView navigationView;
-    Fragment fragment = new NewsFragment();
+    private Fragment fragment = new NewsFragment();
+    private int idaux = 10000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -105,10 +106,17 @@ public class HomeActivity extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Fragment fragment = null;
 
         if (id == R.id.nav_news) {
-            fragment = new NewsFragment();
+
+            if(idaux != id) {
+                System.out.println();
+                idaux = id;
+                fragment = new NewsFragment();
+            }else{
+                //
+            }
+
         } else if (id == R.id.nav_fav) {
 
         } else if (id == R.id.nav_settings) {
