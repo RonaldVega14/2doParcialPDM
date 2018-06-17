@@ -19,4 +19,7 @@ public interface PlayerDao {
     @Query("SELECT * FROM PlayerEntity WHERE game=:game")
     LiveData<List<PlayerEntity>> getPlayerByGame(String game);
 
+    @Query("SELECT * FROM PlayerEntity")
+    LiveData<List<PlayerEntity>> getPlayers();
+
 }

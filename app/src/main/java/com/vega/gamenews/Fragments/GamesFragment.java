@@ -54,7 +54,7 @@ public class GamesFragment extends Fragment {
 
     public void insertFragments(){
         adapter.addFragment(NewsFragment.newInstance(2, cat), "News");
-        adapter.addFragment(new NewsFragment(), "News2");
+        adapter.addFragment(PlayersFragment.newInstace(cat), "Players");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
     }

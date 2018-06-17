@@ -2,6 +2,7 @@ package com.vega.gamenews.Adapters;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -56,12 +57,14 @@ public class PlayersAdapter extends RecyclerView.Adapter<PlayersAdapter.PlayerVi
 
         private ImageView imageView;
         private TextView textView;
+        private CardView cardView;
 
 
         public PlayerViewHolder(View itemView) {
             super(itemView);
             imageView = itemView.findViewById(R.id.photo);
             textView = itemView.findViewById(R.id.name);
+            cardView = itemView.findViewById(R.id.player_card_view);
         }
     }
 }

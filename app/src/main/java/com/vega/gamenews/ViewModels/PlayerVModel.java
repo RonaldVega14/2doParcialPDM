@@ -25,6 +25,10 @@ public class PlayerVModel extends AndroidViewModel{
         return playerRepository.getPlayerByGame(game);
     }
 
+    public LiveData<List<PlayerEntity>> getPlayers(){
+        return playerRepository.getPlayers();
+    }
+
     public void insert(PlayerEntity player){
         playerRepository.insert(player);
     }

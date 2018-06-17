@@ -1,7 +1,9 @@
 package com.vega.gamenews.Activities;
 
+import android.app.Application;
 import android.arch.lifecycle.Observer;
 import android.arch.lifecycle.ViewModelProviders;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -111,6 +113,13 @@ public class HomeActivity extends AppCompatActivity
         switch (id){
 
             case R.id.nav_logout:
+
+                SharedPreferences preferences = this.getSharedPreferences("log", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = preferences.edit();
+                editor.clear();
+                editor.commit();
+                startActivity(new Intent(this, MainActivity.class));
+
                 break;
 
             case R.id.nav_settings:

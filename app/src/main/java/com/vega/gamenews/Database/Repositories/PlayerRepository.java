@@ -86,6 +86,10 @@ public class PlayerRepository {
         return playerDao.getPlayerByGame(game);
     }
 
+    public LiveData<List<PlayerEntity>> getPlayers(){
+        return playerDao.getPlayers();
+    }
+
     public void insert(PlayerEntity playerEntity){
         new InsertAsyncTask(playerDao).execute(playerEntity);
     }

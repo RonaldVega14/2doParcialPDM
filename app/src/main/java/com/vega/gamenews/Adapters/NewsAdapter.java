@@ -1,6 +1,7 @@
 package com.vega.gamenews.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -12,6 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
+import com.vega.gamenews.Activities.NewsActivity;
 import com.vega.gamenews.Database.Entities.NewsEntity;
 import com.vega.gamenews.Models.News;
 import com.vega.gamenews.R;
@@ -68,7 +70,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.NewsViewHolder
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent intent = new Intent(context, NewsActivity.class);
+                intent.putExtra("image", news.get(position).getCoverImage());
+                intent.putExtra("title", news.get(position).getTitle());
+                intent.putExtra("body", news.get(position).getBody());
 
+                context.startActivity(intent);
             }
         });
 
