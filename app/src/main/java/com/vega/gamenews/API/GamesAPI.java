@@ -2,6 +2,7 @@ package com.vega.gamenews.API;
 
 import com.vega.gamenews.Models.Login;
 import com.vega.gamenews.Models.News;
+import com.vega.gamenews.Models.Player;
 
 import java.util.List;
 
@@ -28,6 +29,10 @@ public interface GamesAPI {
 
     @GET("/news/type/list")
     Call<List<String>> getCategories(@Header("Authorization") String auth);
+
+    @GET("players")
+    Call<List<Player>> getPlayersByGame(@Header("Authorization") String authorization);
+
 
 
 }

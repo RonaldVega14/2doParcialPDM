@@ -16,7 +16,7 @@ public interface PlayerDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     void insertPlayer(PlayerEntity playerEntity);
 
-    @Query("SELECT*FROM PlayerEntity WHERE game=:game")
-    LiveData<List<PlayerEntity>> getPlayer(String game);
+    @Query("SELECT * FROM PlayerEntity WHERE game=:game")
+    LiveData<List<PlayerEntity>> getPlayerByGame(String game);
 
 }

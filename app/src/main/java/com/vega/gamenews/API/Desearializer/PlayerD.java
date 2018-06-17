@@ -15,11 +15,39 @@ public class PlayerD implements JsonDeserializer<Player> {
         Player player = new Player();
 
         JsonObject jsonObject = new JsonObject();
-        player.setId(jsonObject.get("_id").getAsInt());
-        player.setName(jsonObject.get("name").getAsString());
-        player.setBiografia(jsonObject.get("biografia").getAsString());
-        player.setAvatar(jsonObject.get("avatar").getAsString());
-        player.setGame(jsonObject.get("game").getAsString());
+
+        if (jsonObject.get("_id") != null){
+            player.setId(jsonObject.get("_id").getAsString());
+        }else{
+            player.setId("");
+        }
+
+
+        if (jsonObject.get("name") != null){
+            player.setName(jsonObject.get("name").getAsString());
+        }else{
+            player.setName("");
+        }
+
+
+        if(jsonObject.get("biografia") != null){
+            player.setBiografia(jsonObject.get("biografia").getAsString());
+        }else{
+            player.setBiografia("");
+        }
+
+        if(jsonObject.get("avatar") !=null) {
+            player.setAvatar(jsonObject.get("avatar").getAsString());
+        }else{
+            player.setAvatar("");
+        }
+
+        if(jsonObject.get("game") !=null) {
+            player.setGame(jsonObject.get("game").getAsString());
+        }else{
+            player.setGame("");
+        }
+
 
         return player;
     }
